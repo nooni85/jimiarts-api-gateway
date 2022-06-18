@@ -23,14 +23,16 @@ public class User extends BaseTimeEntity {
 
     @NotBlank
     @Size(max = 30)
-    @Column(length = 30, nullable = false)
+    @Column(length = 30, nullable = false, unique = true)
     String username;
 
     @NotBlank
+    @Size(max = 72)
     @Column(length = 72, nullable = false)
     String password;
 
     @NotBlank
-    @Column(length = 255, nullable = false)
+    @Size(max = 255)
+    @Column(nullable = false, unique = true)
     String email;
 }

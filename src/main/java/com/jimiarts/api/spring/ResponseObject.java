@@ -4,19 +4,27 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.tomcat.jni.Local;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @param <T>
+ * @author Sangwoo Joo
+ */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Getter
 @Setter
 @NoArgsConstructor
 public class ResponseObject<T>{
+
+    /**
+     * DataObject
+     * Generic type of this holds data
+     */
     T data;
 
     List<ResponseFieldError> fieldErrors = null;
@@ -38,7 +46,7 @@ public class ResponseObject<T>{
         if (fieldErrors == null) {
             fieldErrors = new ArrayList<>();
         }
-        for(FieldError error : bindingResult.getFieldErrors()) {
+        for(FieldError error: bindingResult.getFieldErrors()) {
             ResponseFieldError resultFieldError = new ResponseFieldError();
             resultFieldError.setFieldName(error.getField());
             resultFieldError.setMessage(error.getDefaultMessage());
